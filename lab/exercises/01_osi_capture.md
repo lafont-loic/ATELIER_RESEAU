@@ -190,7 +190,7 @@ visibilité&nbsp;?
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> Nous pouvons voir des lignes avec renegotiating SSL/TLS connection par exemple pour le certificat tls que avant on avait pas avec le http
 
 **Question 4.** La couche 5 (Session) est très peu visible dans une
 capture HTTP/1.1. Donnez **deux mécanismes applicatifs** qui jouent le
@@ -199,8 +199,7 @@ rôle de la couche session, et expliquez pourquoi ils sont implémentés
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
-
+> La couche 5 Osi existe pas vraiment dans TCP IP et c'est la couche 7 qui gere les session au niveau applicatif
 ## Pièges fréquents
 
 * **Capture vide (`Number of packets: 0`)** — vous avez lancé `curl` *avant*
