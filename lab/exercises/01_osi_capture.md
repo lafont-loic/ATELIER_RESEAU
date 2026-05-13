@@ -140,7 +140,13 @@ NAT (exercice 3), pointez-le vers le bon conteneur et le bon fichier :
 
 > 💬 **Votre réponse (sorties du script + analyse) :**
 >
-> _Remplacez ce texte par votre réponse._
+>   0.000000  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=900/33795, ttl=64
+    2   1.022859  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=901/34051, ttl=64
+    3   2.046850  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=902/34307, ttl=64
+    4   3.071055  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=903/34563, ttl=64
+    5   4.094855  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=904/34819, ttl=64
+    6   5.119861  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=905/35075, ttl=64
+    7   6.142873  172.20.1.50 → 172.20.0.10  ICMP 98 Echo (ping) request  id=0x0003, seq=906/35331, ttl=64
 
 ## À rendre — répondez directement dans ce fichier
 
@@ -165,7 +171,7 @@ vous apprend cette observation sur la portée de chaque couche&nbsp;?
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> une adresse MAC sert juste de repère pour allé au à l'équipement d'interconnexion suivant. il est donc normal que on ne voit pas celle du serveur sources
 
 **Question 2.** Vous capturez sur `eth0` du client (côté LAN). Dans votre
 trace, l'**IP source** sortante est `172.20.1.50`. Pourtant, `curl /whoami`
@@ -175,7 +181,7 @@ et indiquez **où** il faudrait capturer pour voir l'IP réécrite.
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> car le NAT retranslat l'IP afin de pouvoir sortir sur internet.
 
 **Question 3.** Lancez `curl -v https://...` vers un site HTTPS public
 (depuis l'hôte, pas le lab). Quelle couche change visiblement par
