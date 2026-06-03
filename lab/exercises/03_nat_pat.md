@@ -65,7 +65,7 @@ côté NAT pour les 5 requêtes parallèles&nbsp;? Que se passerait-il avec
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> Nombre de ports distincts : Il y a 5 ports sources distincts (un port unique par connexion TCP parallèle pour que le routeur puisse les différencier au retour).
 
 ## Partie B — Casser le NAT et réparer
 
@@ -87,7 +87,9 @@ passe-t-il **côté client** (timeout, refus, autre)&nbsp;? **Côté serveur**
 
 > 💬 **Votre réponse (observation client + serveur) :**
 >
-> _Remplacez ce texte par votre réponse._
+> Côté client : Le curl reste totalement bloqué et finit par un Timeout (expiration du délai d'attente) après plusieurs dizaines de secondes, sans rien afficher.
+
+Côté serveur : Les logs de Nginx (access.log) restent complètement vides. Le serveur n'affiche aucune trace de la requête HTTP entrante.
 
 Vérifiez avec un tcpdump sur le routeur, côté WAN&nbsp;:
 
@@ -101,7 +103,7 @@ plutôt que pour l'**aller**&nbsp;?
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+>IP source sortante : L'adresse IP source qui apparaît dans le tcpdump est l'adresse IP privée réelle du client (soit 172.20.1.50).
 
 Remettez la règle&nbsp;:
 
@@ -133,7 +135,7 @@ Comparez avec l'IP vue en partie A et expliquez la différence.
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> IP vue par Nginx : Nginx voit l'adresse IP 172.20.0.254 (l'interface WAN du routeur)._
 
 **Question C.2.** Modifiez la règle pour que nginx voie l'**IP réelle**
 du client. Indice&nbsp;: il manque encore une règle de SNAT pour le retour,
@@ -141,14 +143,14 @@ OU activez la fonction « hairpin » avec une règle dans `POSTROUTING`.
 
 > 💬 **Votre réponse (règle iptables + observation nginx) :**
 >
-> _Remplacez ce texte par votre réponse._
+>docker exec lab_nat_router iptables -t nat -A POSTROUTING -p tcp -s 172.20.1.0/24 -d 172.20.0.10 --dport 80 -j MASQUERADE
 
 **Question C.3.** Donnez **un cas d'usage réel** (datacenter ou
 domestique) pour ce couple DNAT + SNAT.
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> Un cas d'usage classique est le Hairpin NAT (ou NAT Loopback) en environnement domestique ou PME. Par exemple, lorsqu'un serveur Web est hébergé sur le réseau local et qu'un utilisateur situé à l'intérieur de ce même réseau local essaie d'accéder au serveur en utilisant son nom de domaine public (qui pointe sur l'IP publique de la Box/Routeur). Le couple DNAT + SNAT permet au paquet de faire un "demi-tour" propre au niveau du routeur et de revenir vers le réseau local avec les bonnes adresses pour éviter un routage asymétrique.
 
 ## Questions de synthèse
 
