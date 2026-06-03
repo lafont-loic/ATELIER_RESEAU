@@ -49,14 +49,15 @@ second tuple** (reply), et expliquez ce que le tuple-reply signifie.
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> tcp 6 114 ESTABLISHED src=172.20.1.50 dst=172.20.0.10 sport=45322 dport=80 src=172.20.0.10 dst=172.20.0.254 sport=80 dport=45322
+tcp 6 114 ESTABLISHED src=172.20.1.50 dst=172.20.0.10 sport=45324 dport=80 src=172.20.0.10 dst=172.20.0.254 sport=80 dport=45324
 
 **Question A.2.** Quelle IP voit le serveur `internet` dans
 `access.log`&nbsp;? Pourquoi pas `172.20.1.50`&nbsp;?
 
 > 💬 **Votre réponse :**
 >
-> _Remplacez ce texte par votre réponse._
+> Le serveur voit l'adresse IP 172.20.0.254, qui est l'interface externe (WAN) du routeur NAT. Il ne voit pas l'IP 172.20.1.50 car c'est une IP privée non routable sur le réseau externe
 
 **Question A.3.** Combien de **ports sources distincts** apparaissent
 côté NAT pour les 5 requêtes parallèles&nbsp;? Que se passerait-il avec
